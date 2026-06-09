@@ -1,8 +1,12 @@
 # Obsidian
+.obsidian/
 .obsidian/workspace*
 .obsidian/cache/
 .obsidian/plugins/
 .obsidian/community-plugins.json
+
+# Local Obsidian plugin state
+.claudian/
 
 # Trash
 .trash/
