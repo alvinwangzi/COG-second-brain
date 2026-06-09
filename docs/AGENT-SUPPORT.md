@@ -8,8 +8,8 @@ This document is the packaging contract: it tells contributors and maintainers w
 
 | Surface | Shipped format | Coverage | Status |
 |---|---|---:|---|
-| Claude Code | `.claude/skills/*/SKILL.md` | 17 skills | Full native surface |
-| Universal agent docs | `AGENTS.md` | 17 commands | Full documented fallback |
+| Claude Code | `.claude/skills/*/SKILL.md` | 18 skills | Full native surface |
+| Universal agent docs | `AGENTS.md` | 18 commands | Full documented fallback |
 | Kiro | `.kiro/powers/*/POWER.md` | 7 powers | Core workflows only |
 | Gemini CLI | `.gemini/commands/*.toml` + `.gemini/skills/*.md` | 7 commands | Core workflows only |
 
@@ -23,6 +23,7 @@ These surfaces should expose the complete public COG command set:
 - `weekly-checkin`
 - `knowledge-consolidation`
 - `url-dump`
+- `scout`
 - `team-brief`
 - `meeting-transcript`
 - `comprehensive-analysis`

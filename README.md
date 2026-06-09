@@ -11,7 +11,7 @@
 ```mermaid
 graph LR
     A[You] -- natural language --> B[AI Agent]
-    B -- runs --> C[17 Skills]
+    B -- runs --> C[18 Skills]
     C -- delegates to --> W[6 Worker Agents]
     C -- reads & writes --> D[.md Files]
     W -- reads & writes --> D
@@ -54,11 +54,11 @@ COG ships a **full Claude Code surface** plus **core native surfaces** for Kiro 
 
 | Surface | Current support | Notes |
 |---|---|---|
-| Claude Code | 17 native skills + 6 worker agents | Full first-class surface |
+| Claude Code | 18 native skills + 6 worker agents | Full first-class surface |
 | Cursor | Plugin manifest + rules | `.cursor-plugin/plugin.json` + `.cursorrules` |
 | Kiro | 7 native powers | Core workflows today |
 | Gemini CLI | 7 native commands | Core workflows today |
-| `AGENTS.md` | 17 documented commands | Universal fallback for Codex and other agents |
+| `AGENTS.md` | 18 documented commands | Universal fallback for Codex and other agents |
 
 Before publishing or updating framework files, run `./scripts/validate-agent-surface.sh` to catch drift between manifests, docs, and shipped files. See [docs/AGENT-SUPPORT.md](docs/AGENT-SUPPORT.md) for the detailed support matrix and contributor rules.
 
@@ -75,6 +75,7 @@ Before publishing or updating framework files, run `./scripts/validate-agent-sur
 | **weekly-checkin** | Cross-domain pattern analysis | "Weekly review" |
 | **knowledge-consolidation** | Build frameworks from scattered notes | "Consolidate my knowledge" |
 | **update-cog** | Update framework files without touching your content | "Update COG" |
+| **scout** | Evaluate URLs and tools before saving | "Scout this" |
 
 ### Team Intelligence Skills (for Product & Engineering Leads)
 
@@ -175,7 +176,7 @@ graph TD
 
 ```
 COG-second-brain/
-├── .claude/skills/          # Claude Code skills (17)
+├── .claude/skills/          # Claude Code skills (18)
 ├── .claude/agents/          # Worker agent definitions (6)
 ├── .claude/roles/           # Role packs (7) — personalized recommendations
 ├── .kiro/powers/            # Kiro powers

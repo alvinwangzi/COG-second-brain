@@ -28,27 +28,34 @@ record_warning() {
   warnings=$((warnings + 1))
 }
 
-if ! command -v python3 >/dev/null 2>&1; then
-  record_failure "python3 is required for validation"
+PYTHON_BIN=""
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+elif command -v py >/dev/null 2>&1; then
+  PYTHON_BIN="py"
+fi
+
+if [[ -z "$PYTHON_BIN" ]]; then
+  record_failure "python3 or Windows py launcher is required for validation"
   exit 1
 fi
 
 info "Validating packaged agent surfaces from $ROOT_DIR"
 
-if python3 -m json.tool .claude-plugin/plugin.json >/dev/null 2>&1; then
+if "$PYTHON_BIN" -m json.tool .claude-plugin/plugin.json >/dev/null 2>&1; then
   ok ".claude-plugin/plugin.json is valid JSON"
 else
   record_failure ".claude-plugin/plugin.json is not valid JSON"
 fi
 
-if python3 -m json.tool marketplace-entry.json >/dev/null 2>&1; then
+if "$PYTHON_BIN" -m json.tool marketplace-entry.json >/dev/null 2>&1; then
   ok "marketplace-entry.json is valid JSON"
 else
   record_failure "marketplace-entry.json is not valid JSON"
 fi
 
 manifest_tmp="$(mktemp)"
-python3 - <<'PY' > "$manifest_tmp"
+"$PYTHON_BIN" - <<'PY' > "$manifest_tmp"
 import json
 with open('.claude-plugin/plugin.json') as f:
     data = json.load(f)
@@ -66,6 +73,8 @@ else
 fi
 
 while IFS=$'\t' read -r name path; do
+  name="${name%$'\r'}"
+  path="${path%$'\r'}"
   [[ -z "$name" ]] && continue
 
   if [[ -f "$path" ]]; then
@@ -83,18 +92,20 @@ done < "$manifest_tmp"
 
 rm -f "$manifest_tmp"
 
-plugin_version=$(python3 - <<'PY'
+plugin_version=$("$PYTHON_BIN" - <<'PY'
 import json
 with open('.claude-plugin/plugin.json') as f:
     print(json.load(f)['version'])
 PY
 )
-marketplace_version=$(python3 - <<'PY'
+plugin_version="${plugin_version%$'\r'}"
+marketplace_version=$("$PYTHON_BIN" - <<'PY'
 import json
 with open('marketplace-entry.json') as f:
     print(json.load(f)['version'])
 PY
 )
+marketplace_version="${marketplace_version%$'\r'}"
 cog_version=$(tr -d '[:space:]' < COG-VERSION)
 
 if [[ "$plugin_version" == "$marketplace_version" && "$plugin_version" == "$cog_version" ]]; then

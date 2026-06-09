@@ -7,7 +7,7 @@ Complete step-by-step instructions for setting up your COG (Cognition + Obsidian
 ### What You Need
 
 1. **AI Agent** (choose one or more):
-   - [Claude Code](https://claude.ai/download) - Uses `.claude/skills/` (full 17-skill native surface)
+   - [Claude Code](https://claude.ai/download) - Uses `.claude/skills/` (full 18-skill native surface)
    - [Kiro](https://kiro.dev/) - Uses `.kiro/powers/` (7 core native powers)
    - [Gemini CLI](https://github.com/google-gemini/gemini-cli) - Uses `GEMINI.md` + `.gemini/commands/` (7 core native commands)
    - Any OpenAI-compatible or markdown-reading agent - Uses `AGENTS.md`
@@ -44,10 +44,10 @@ That's it! You now have a working second brain.
 **What just happened?**
 - The cloned `COG-second-brain` folder IS your second brain
 - COG now exposes a clear multi-agent support matrix:
-  - `.claude/skills/` - 17 Claude Code skills (full surface)
+  - `.claude/skills/` - 18 Claude Code skills (full surface)
   - `.kiro/powers/` - 7 Kiro powers (core workflows)
   - `.gemini/commands/` + `.gemini/skills/` - 7 Gemini CLI commands (core workflows)
-  - `AGENTS.md` - 17 documented commands for Codex and other agents
+  - `AGENTS.md` - 18 documented commands for Codex and other agents
 - Onboarding will create your personalized directory structure
 - You can validate the packaged agent surfaces anytime with `./scripts/validate-agent-surface.sh`
 
@@ -131,13 +131,18 @@ COG-second-brain/              # This is your second brain folder
 ├── .claude/
 │   ├── agents/                # 6 worker agent definitions
 │   ├── roles/                 # 7 role packs for personalized recommendations
-│   └── skills/                # 17 Claude Code skills
+│   └── skills/                # 18 Claude Code skills
 │       ├── onboarding/
 │       ├── braindump/
 │       ├── daily-brief/
 │       ├── weekly-checkin/
 │       ├── knowledge-consolidation/
 │       ├── url-dump/
+│       ├── scout/
+│       ├── update-cog/
+│       ├── team-brief/
+│       ├── meeting-transcript/
+│       ├── comprehensive-analysis/
 │       ├── auto-research/
 │       ├── create-user-story/
 │       ├── generate-prd/
